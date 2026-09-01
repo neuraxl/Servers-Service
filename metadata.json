@@ -1,0 +1,6 @@
+{
+  "name": "NetGlobal Ops",
+  "description": "Application de gestion de serveurs informatique et surveillance de réseau mondial en temps réel avec tableau de bord télémétrique interactif.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
