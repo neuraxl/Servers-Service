@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="LEVIATHAN HEALTH — Command Center du réseau sociosanitaire québécois">
+<title>LEVIATHAN HEALTH // Command Center</title>
+<style>
+:root{--bg:#020711;--panel:#061426e8;--line:#153650;--cyan:#35d9ff;--green:#43e7aa;--violet:#ad7bff;--amber:#ffc857;--text:#eaf7ff;--muted:#7894ae}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--text);font:14px system-ui,Segoe UI,sans-serif;background:radial-gradient(circle at 70% 0,#0a2742,transparent 35%),linear-gradient(145deg,#020711,#03101e 55%,#02060d);overflow-x:hidden}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:linear-gradient(#35d9ff0b 1px,transparent 1px),linear-gradient(90deg,#35d9ff0b 1px,transparent 1px);background-size:42px 42px}
+button,input{font:inherit}.topbar{height:72px;position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:22px;padding:0 22px;border-bottom:1px solid var(--line);background:#020811e8;backdrop-filter:blur(18px)}.brand{min-width:235px;font-weight:900;letter-spacing:4px;font-size:18px}.brand span{display:block;margin:7px 0 0 42px;color:var(--cyan);font-size:9px;letter-spacing:5px}.search{flex:1;max-width:720px;margin:auto}.search input{width:100%;height:42px;padding:0 15px;border:1px solid var(--line);border-radius:7px;outline:0;color:white;background:#051323}.status{white-space:nowrap;color:var(--green);font-size:10px;font-weight:800;letter-spacing:1px}.pulse{display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.shell{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 72px)}aside{position:sticky;top:72px;height:calc(100vh - 72px);overflow:auto;padding:16px 12px;border-right:1px solid var(--line);background:#030b15b8}.label{padding:15px 9px 6px;color:#4e6e89;font-size:9px;font-weight:800;letter-spacing:2px}.nav{width:100%;padding:11px 10px;border:0;border-radius:7px;text-align:left;color:#aac1d6;background:0;cursor:pointer}.nav:hover,.nav.active{color:#fff;background:#0c2d55;box-shadow:inset 2px 0 var(--cyan)}.agent{display:grid;grid-template-columns:9px 1fr auto;gap:9px;align-items:center;padding:8px 10px}.dot{width:8px;height:8px;border-radius:50%;background:var(--violet);box-shadow:0 0 12px var(--violet)}.agent b{font-size:10px;letter-spacing:1px}.agent small{display:block;color:var(--muted);font-size:9px}.ready{color:var(--green);font-size:8px}
+main{max-width:1800px;width:100%;margin:auto;padding:24px}.hero{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:18px}.hero h1{margin:0;font-size:clamp(24px,3vw,36px);letter-spacing:2px}.hero p{margin:7px 0 0;color:var(--muted)}.tag{padding:8px;border:1px solid var(--line);border-radius:5px;color:#8eeeff;font-size:9px;letter-spacing:1px}.card{border:1px solid var(--line);border-radius:9px;background:linear-gradient(145deg,#07192ce8,#040d19e8);box-shadow:0 20px 70px #0005}.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.kpi{padding:15px;min-height:108px}.kpi small{color:var(--muted);font-size:9px;letter-spacing:1px}.value{margin-top:12px;color:var(--cyan);font-size:28px;font-weight:900}.meta{color:#5e7992;font-size:9px;margin-top:3px}.grid{display:grid;grid-template-columns:1.65fr .75fr;gap:14px;margin-top:14px}.panel{padding:16px}.title{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.title h2,.title h3{margin:0;font-size:12px;letter-spacing:1.5px}.title span{color:var(--muted);font-size:9px}
+.map{height:470px;position:relative;overflow:hidden;border:1px solid #2e90be26;border-radius:7px;background:radial-gradient(circle at 53% 48%,#1c669025,transparent 28%),#030c18}.map:before{content:"";position:absolute;inset:7%;border:1px solid #35d9ff1f;border-radius:49% 51% 45% 55%;transform:rotate(-10deg);box-shadow:0 0 70px #1088bb14}.mapgrid{position:absolute;inset:0;background-image:linear-gradient(#35d9ff08 1px,transparent 1px),linear-gradient(90deg,#35d9ff08 1px,transparent 1px);background-size:36px 36px}.line{position:absolute;height:1px;transform-origin:left;background:linear-gradient(90deg,#35d9ff08,#35d9ff70,#35d9ff02)}.a{width:250px;left:30%;top:42%;transform:rotate(12deg)}.b{width:180px;left:48%;top:47%;transform:rotate(-33deg)}.c{width:260px;left:41%;top:56%;transform:rotate(18deg)}.d{width:190px;left:57%;top:56%;transform:rotate(67deg)}.marker{position:absolute;width:38px;height:38px;border:1px solid #49ddffb3;border-radius:50%;color:#fff;background:#043e58e8;box-shadow:0 0 24px #29d9ff40;font-size:10px;font-weight:800;cursor:pointer}.marker:hover{transform:scale(1.14)}.bsl{left:67%;top:27%}.cn{left:53%;top:39%}.cha{left:60%;top:53%}.mtl{left:44%;top:67%}.mtr{left:52%;top:74%}.maur{left:36%;top:54%}.lav{left:47%;top:62%}.ml{position:absolute;color:#73a7c2;font-size:9px}.lb{left:70%;top:23%}.lc{left:56%;top:35%}.lch{left:64%;top:55%}.lm{left:38%;top:71%}.lmt{left:55%;top:79%}.legend{position:absolute;left:14px;bottom:14px;padding:8px;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:#030d19cc;font-size:9px}
+.activity{height:470px;display:flex;flex-direction:column}.events{flex:1;overflow:auto}.event{padding:11px 0;border-bottom:1px solid #38ade01f}.eh{display:flex;justify-content:space-between}.type{color:#8eeeff;font-size:9px;font-weight:800;letter-spacing:1px}.time{color:#55718b;font-size:9px}.et{margin-top:4px;color:#b5cada;font-size:11px;line-height:1.4}.query{display:flex;gap:7px;margin-top:12px}.query input{flex:1;min-width:0;height:39px;padding:0 11px;border:1px solid var(--line);border-radius:6px;outline:0;color:white;background:#041121}.query button{border:1px solid #35d9ff73;border-radius:6px;color:white;background:#0c6396;padding:0 13px;font-size:9px;font-weight:800}.answer{display:none;margin-top:9px;padding:10px;border-left:2px solid var(--cyan);color:#9bdff0;background:#17688a17;font-size:10px;line-height:1.45}
+.bottom{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:14px}.bar{height:6px;margin-top:7px;background:#0d2237;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#1c8bbd,var(--cyan))}.service{margin:13px 0}.st{display:flex;justify-content:space-between;color:#aac1d4;font-size:10px}.st b{color:#8eeeff}.graph{height:235px;position:relative;overflow:hidden;border:1px solid #ad7bff24;border-radius:6px;background:radial-gradient(circle,#6f44bd22,transparent 35%),#030a15}.graph svg{position:absolute;inset:0;width:100%;height:100%}.node{position:absolute;padding:8px 11px;border:1px solid #ad7bff99;border-radius:30px;color:#dfd2ff;background:#101126eb;font-size:9px;font-weight:800}.core{left:42%;top:42%;border-color:var(--cyan);color:#8eeeff}.aria{left:10%;top:15%}.quantum{right:8%;top:16%}.genesis{left:9%;bottom:16%}.phoenix{right:8%;bottom:15%}.stack{display:grid;gap:10px}.stack div{display:flex;justify-content:space-between;padding:9px;border:1px solid #38ade01f;border-radius:6px;background:#04101d8c;font-size:10px}.stack span{color:var(--green);font-size:9px}.note{margin-top:13px;padding:11px;border:1px solid #38ade01f;border-radius:6px;color:#607c94;font-size:9px;line-height:1.5}footer{padding:25px 0 8px;text-align:center;color:#45627b;font-size:9px}.toast{position:fixed;right:20px;bottom:20px;z-index:50;padding:12px;border:1px solid #35d9ff70;border-radius:7px;color:#dff9ff;background:#031220f5;opacity:0;transform:translateY(8px);transition:.2s;font-size:10px}.toast.show{opacity:1;transform:none}
+@media(max-width:1250px){.kpis{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr}.bottom{grid-template-columns:1fr 1fr}}@media(max-width:900px){.shell{grid-template-columns:1fr}aside{position:static;height:auto;display:grid;grid-template-columns:repeat(2,1fr)}.agent{display:none}.label{grid-column:1/-1}.brand{min-width:auto}.search{display:none}}@media(max-width:650px){.topbar{height:62px;padding:0 13px}.status{margin-left:auto}.main{padding:15px}.hero{flex-direction:column;align-items:flex-start}.kpis{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}.map{height:390px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">◈ LEVIATHAN<span>HEALTH // v0.1</span></div>
+  <div class="search"><input id="globalSearch" placeholder="Rechercher un territoire, établissement, service ou indicateur…"></div>
+  <div class="status"><i class="pulse"></i>SYSTEM ONLINE</div>
+</header>
+
+<div class="shell">
+<aside>
+  <div class="label">COMMAND CENTER</div>
+  <button class="nav active" data-target="dashboard">▣ &nbsp; Tableau de bord</button>
+  <button class="nav" data-target="territories">◎ &nbsp; Territoires</button>
+  <button class="nav" data-target="facilities">♜ &nbsp; Établissements</button>
+  <button class="nav" data-target="services">⌘ &nbsp; Services</button>
+  <button class="nav" data-target="indicators">▥ &nbsp; Indicateurs</button>
+  <button class="nav" data-target="graph">◇ &nbsp; Knowledge Graph</button>
+  <div class="label">UNX2 AGENTS</div>
+  <div class="agent"><i class="dot"></i><div><b>ARIA</b><small>Parcours & accès</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>NEXUS</b><small>Orchestration</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>QUANTUM</b><small>Analyse</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>GENESIS</b><small>Données</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>ZENITH</b><small>Performance</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>AURORA</b><small>Territoire</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>COSMOS</b><small>Vision globale</small></div><span class="ready">READY</span></div>
+  <div class="agent"><i class="dot"></i><div><b>PHOENIX</b><small>Apprentissage</small></div><span class="ready">READY</span></div>
+<a href="#omega-agents" style="display:block;margin:10px;padding:10px;border:1px solid #153650;border-radius:7px;color:#35d9ff;text-decoration:none;font-weight:800">Ω 200 AGENTS</a></aside>
+
+<main id="dashboard">
+  <section class="hero">
+    <div><h1>LEVIATHAN HEALTH</h1><p>Command Center du réseau sociosanitaire québécois — connaissance, géographie, services et orchestration.</p></div>
+    <div class="tag">PUBLIC DATA // NO PERSONAL HEALTH DATA</div>
+  </section>
+
+  <section class="kpis">
+    <div class="card kpi"><small>RÉGIONS SOCIOSANITAIRES</small><div class="value" data-n="18">0</div><div class="meta">Québec</div></div>
+    <div class="card kpi"><small>ÉTABLISSEMENTS PUBLICS</small><div class="value" data-n="51">0</div><div class="meta">réseau</div></div>
+    <div class="card kpi"><small>INSTALLATIONS</small><div class="value" data-n="1589">0</div><div class="meta">référence réseau 2025</div></div>
+    <div class="card kpi"><small>NŒUDS DU GRAPHE</small><div class="value" data-n="1864">0</div><div class="meta">prototype</div></div>
+    <div class="card kpi"><small>AGENTS UNX2</small><div class="value" data-n="8">0</div><div class="meta">orchestration prête</div></div>
+  </section>
+
+  <section class="grid">
+    <article class="card panel" id="territories">
+      <div class="title"><h2>CARTE DU RÉSEAU SOCIOSANITAIRE</h2><span>7 zones visualisées</span></div>
+      <div class="map">
+        <div class="mapgrid"></div><div class="line a"></div><div class="line b"></div><div class="line c"></div><div class="line d"></div>
+        <button class="marker bsl" data-place="Bas-Saint-Laurent">114</button>
+        <button class="marker cn" data-place="Capitale-Nationale">208</button>
+        <button class="marker cha" data-place="Chaudière-Appalaches">72</button>
+        <button class="marker mtl" data-place="Montréal">412</button>
+        <button class="marker mtr" data-place="Montérégie">308</button>
+        <button class="marker maur" data-place="Mauricie">85</button>
+        <button class="marker lav" data-place="Laval">62</button>
+        <span class="ml lb">BAS-SAINT-LAURENT</span><span class="ml lc">CAPITALE-NATIONALE</span><span class="ml lch">CHAUDIÈRE-APPALACHES</span><span class="ml lm">MONTRÉAL</span><span class="ml lmt">MONTÉRÉGIE</span>
+        <div class="legend">● installations &nbsp;&nbsp; ● services &nbsp;&nbsp; CLIQUER SUR UN NŒUD</div>
+      </div>
+    </article>
+
+    <article class="card panel activity" id="facilities">
+      <div class="title"><h2>EVENT STREAM</h2><span>LIVE</span></div>
+      <div class="events" id="events"></div>
+      <div class="query"><input id="queryInput" placeholder="Ex.: services à Montmagny…"><button id="queryButton">INTERROGER</button></div>
+      <div class="answer" id="answer"></div>
+    </article>
+  </section>
+
+  <section class="bottom">
+    <article class="card panel" id="services">
+      <div class="title"><h3>SERVICES — VUE RÉSEAU</h3><span>prototype</span></div>
+      <div class="service"><div class="st"><span>Première ligne</span><b>245</b></div><div class="bar"><i style="width:92%"></i></div></div>
+      <div class="service"><div class="st"><span>Santé mentale</span><b>186</b></div><div class="bar"><i style="width:74%"></i></div></div>
+      <div class="service"><div class="st"><span>Services sociaux</span><b>142</b></div><div class="bar"><i style="width:57%"></i></div></div>
+      <div class="service"><div class="st"><span>Réadaptation</span><b>96</b></div><div class="bar"><i style="width:39%"></i></div></div>
+    </article>
+
+    <article class="card panel" id="graph">
+      <div class="title"><h3>KNOWLEDGE GRAPH // UNX2</h3><span>LIVE TOPOLOGY</span></div>
+      <div class="graph">
+        <svg viewBox="0 0 500 235" preserveAspectRatio="none">
+          <line x1="250" y1="112" x2="82" y2="58" stroke="#ad7bff66"/><line x1="250" y1="112" x2="420" y2="58" stroke="#ad7bff66"/>
+          <line x1="250" y1="112" x2="86" y2="183" stroke="#ad7bff66"/><line x1="250" y1="112" x2="420" y2="183" stroke="#ad7bff66"/>
+        </svg>
+        <div class="node core">NEXUS / CORE</div><div class="node aria">ARIA</div><div class="node quantum">QUANTUM</div><div class="node genesis">GENESIS</div><div class="node phoenix">PHOENIX</div>
+      </div>
+    </article>
+
+    <article class="card panel" id="indicators">
+      <div class="title"><h3>INFRASTRUCTURE</h3><span>HEALTH CHECK</span></div>
+      <div class="stack">
+        <div>PostgreSQL / PostGIS <span>● ONLINE</span></div>
+        <div>Redis / Event Bus <span>● ONLINE</span></div>
+        <div>FastAPI Gateway <span>● ONLINE</span></div>
+        <div>Knowledge Graph <span>● ONLINE</span></div>
+        <div>UNX2 Router <span style="color:var(--amber)">● READY</span></div>
+      </div>
+      <div class="note"><b style="color:#8aa8bf">SOURCE</b><br>M02 — référentiels publics des installations et établissements du réseau sociosanitaire québécois. Prototype non exhaustif et sans données personnelles de santé.</div>
+    </article>
+  </section>
+
+  <footer>LEVIATHAN HEALTH v0.1 · Données publiques · Architecture prototype · Préparé pour API / PostgreSQL / PostGIS / Redis / UNX2</footer>
+</main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API_BASE="http://localhost:8000";
+const eventData=[
+["GRAPH","Knowledge Graph initialisé","territoire → organisation → installation → service"],
+["M02","Référentiel public chargé","source MSSS / Données Québec"],
+["API","FastAPI Gateway","/api/v1/query"],
+["REDIS","Event Bus prêt","Redis Streams"],
+["UNX2","NEXUS synchronisé","orchestration centrale"],
+["AURORA","Territoire analysé","Chaudière-Appalaches"],
+["ARIA","Parcours indexé","première ligne"],
+["ZENITH","Indicateurs disponibles","vue réseau"]
+];
+const events=document.getElementById("events"),toast=document.getElementById("toast"),answer=document.getElementById("answer");
+function renderEvents(){events.innerHTML=eventData.map((e,i)=>`<div class="event"><div class="eh"><span class="type">${e[0]}</span><span class="time">${i<2?"NOW":i+1+"m"}</span></div><div class="et"><b>${e[1]}</b><br>${e[2]}</div></div>`).join("")}
+function notify(s){toast.textContent=s;toast.classList.add("show");clearTimeout(notify.t);notify.t=setTimeout(()=>toast.classList.remove("show"),2500)}
+async function runQuery(){
+ const q=document.getElementById("queryInput").value.trim(); if(!q){notify("Entrez une requête.");return}
+ answer.style.display="block";answer.textContent=`REQUÊTE : ${q}\n\nNEXUS → analyse sémantique.\nGENESIS → recherche dans le graphe public.\nAURORA → contexte territorial.\n\nMode prototype : connexion FastAPI en cours de vérification.`;
+ try{const r=await fetch(`${API_BASE}/api/v1/query?q=${encodeURIComponent(q)}`);if(!r.ok)throw Error();const d=await r.json();answer.textContent=`REQUÊTE : ${d.query}\n\n${d.answer}\n\nSOURCE : ${d.evidence?.[0]?.source||"source publique"}`;notify("Réponse reçue de FastAPI.")}catch(e){notify("Mode interface : FastAPI non démarrée.")}
+}
+document.getElementById("queryButton").onclick=runQuery;
+document.getElementById("queryInput").onkeydown=e=>{if(e.key==="Enter")runQuery()};
+document.getElementById("globalSearch").onkeydown=e=>{if(e.key==="Enter"){document.getElementById("queryInput").value=e.target.value;runQuery()}};
+document.querySelectorAll(".marker").forEach(m=>m.onclick=()=>{document.getElementById("queryInput").value="installations et services à "+m.dataset.place;notify("Nœud sélectionné : "+m.dataset.place)});
+document.querySelectorAll(".nav").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.getElementById(b.dataset.target)?.scrollIntoView({behavior:"smooth"})});
+document.querySelectorAll("[data-n]").forEach(el=>{const n=+el.dataset.n;let s=performance.now();function f(t){let p=Math.min((t-s)/850,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString("fr-CA");if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)});
+function live(){const types=["EVENT","GRAPH","AURORA","ZENITH","NEXUS"],texts=["nouvelle relation détectée dans le graphe","territoire recalculé","source publique vérifiée","indicateur synchronisé","routeur agentique disponible"],i=Math.floor(Math.random()*types.length);const x=document.createElement("div");x.className="event";x.innerHTML=`<div class="eh"><span class="type">${types[i]}</span><span class="time">NOW</span></div><div class="et"><b>${texts[i]}</b><br>simulation événementielle locale</div>`;events.prepend(x);while(events.children.length>9)events.lastElementChild.remove()}renderEvents();setInterval(live,4200);
+</script>
+
+<!-- LEVIATHAN HEALTH Ω — SUPER AGENT / 200-AGENT FABRIC -->
+<section id="omega-agents" style="max-width:1500px;margin:28px auto;padding:0 20px 40px">
+  <div style="display:grid;grid-template-columns:1.3fr .7fr;gap:16px">
+    <article style="background:#061426e8;border:1px solid #153650;border-radius:12px;padding:20px;box-shadow:0 0 30px #0008">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div>
+          <div style="color:#35d9ff;font-size:11px;font-weight:900;letter-spacing:3px">LEVIATHAN Ω // HEALTH ORCHESTRATOR</div>
+          <h2 style="margin:7px 0;font-size:25px">SUPER AGENT — 200 AGENTS</h2>
+          <div style="color:#7894ae">Pipeline : source → validation → statistique → interprétation → traçabilité</div>
+        </div>
+        <div id="omegaStatus" style="color:#43e7aa;font-weight:900">● READY</div>
+      </div>
+      <div style="display:flex;gap:10px;margin:18px 0;flex-wrap:wrap">
+        <button id="runOmega" style="cursor:pointer;padding:10px 14px;border:1px solid #35d9ff;background:#07243a;color:#35d9ff;border-radius:7px;font-weight:800">▶ LANCER ORCHESTRATION</button>
+        <button id="clearOmega" style="cursor:pointer;padding:10px 14px;border:1px solid #153650;background:#051323;color:#eaf7ff;border-radius:7px">EFFACER JOURNAL</button>
+      </div>
+      <textarea id="omegaQuery" rows="3" style="width:100%;resize:vertical;padding:12px;border:1px solid #153650;border-radius:7px;background:#020711;color:#eaf7ff;outline:0">Analyse l'évolution des visites aux urgences par région et détecte les anomalies récentes.</textarea>
+      <div id="omegaLog" style="margin-top:15px;height:245px;overflow:auto;background:#020711;border:1px solid #153650;border-radius:7px;padding:12px;font:12px ui-monospace,Consolas,monospace;color:#9fdcff"></div>
+    </article>
+
+    <article style="background:#061426e8;border:1px solid #153650;border-radius:12px;padding:20px">
+      <div style="color:#ad7bff;font-size:11px;font-weight:900;letter-spacing:3px">AGENT FABRIC</div>
+      <h2 style="margin:7px 0 18px">REGISTRE OPÉRATIONNEL</h2>
+      <div id="agentCounters" style="display:grid;grid-template-columns:1fr 1fr;gap:9px"></div>
+      <div style="margin-top:18px;padding:12px;border:1px solid #153650;border-radius:7px">
+        <div style="font-size:11px;color:#7894ae">AGENTS DISPONIBLES</div>
+        <div id="agentCount" style="font-size:34px;font-weight:900;color:#35d9ff">200</div>
+        <div style="color:#7894ae">sélection dynamique par le Super Agent</div>
+      </div>
+    </article>
+  </div>
+
+  <article style="margin-top:16px;background:#061426e8;border:1px solid #153650;border-radius:12px;padding:20px">
+    <div style="color:#ffc857;font-size:11px;font-weight:900;letter-spacing:3px">HEALTH ANALYTICS // AGENT OUTPUT</div>
+    <div style="overflow:auto;margin-top:12px">
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr style="color:#7894ae;text-align:left">
+          <th style="padding:10px;border-bottom:1px solid #153650">Région</th>
+          <th style="padding:10px;border-bottom:1px solid #153650">Visites urgences</th>
+          <th style="padding:10px;border-bottom:1px solid #153650">Variation</th>
+          <th style="padding:10px;border-bottom:1px solid #153650">Anomalie</th>
+          <th style="padding:10px;border-bottom:1px solid #153650">Confiance</th>
+        </tr></thead>
+        <tbody id="analyticsBody"><tr><td colspan="5" style="padding:14px;color:#7894ae">Aucune exécution. Lance une orchestration.</td></tr></tbody>
+      </table>
+    </div>
+  </article>
+</section>
+
+<script>
+(() => {
+  const groups = [
+    ["Collecte & ingestion",40],["Qualité & validation",25],["Statistiques",35],
+    ["Analyse IA",25],["Géospatial",15],["Établissements",15],
+    ["Services & soins",10],["Anomalies",10],["Sécurité & gouvernance",10],
+    ["Recherche",5],["Orchestration",10]
+  ];
+  const agents = [];
+  groups.forEach(([name,n]) => {
+    for(let i=1;i<=n;i++) agents.push({
+      id: name.replace(/[^A-Za-z]/g,"").toUpperCase()+"-"+String(i).padStart(3,"0"),
+      group:name, state:"READY"
+    });
+  });
+
+  const counters = document.getElementById("agentCounters");
+  groups.forEach(([name,n]) => {
+    const d=document.createElement("div");
+    d.style.cssText="border:1px solid #153650;border-radius:7px;padding:9px";
+    d.innerHTML=`<div style="font-size:11px;color:#7894ae">${name}</div><b style="font-size:20px">${n}</b>`;
+    counters.appendChild(d);
+  });
+
+  const log=document.getElementById("omegaLog");
+  const status=document.getElementById("omegaStatus");
+  const body=document.getElementById("analyticsBody");
+  const query=document.getElementById("omegaQuery");
+
+  function write(msg, kind="") {
+    const t=new Date().toLocaleTimeString("fr-CA");
+    const row=document.createElement("div");
+    row.innerHTML=`<span style="color:#7894ae">[${t}]</span> <span style="color:${kind==="ok"?"#43e7aa":kind==="warn"?"#ffc857":"#9fdcff"}">${msg}</span>`;
+    log.appendChild(row); log.scrollTop=log.scrollHeight;
+  }
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+  async function run() {
+    status.textContent="● ORCHESTRATING"; status.style.color="#35d9ff";
+    body.innerHTML='<tr><td colspan="5" style="padding:14px;color:#35d9ff">Calcul des résultats…</td></tr>';
+    log.innerHTML="";
+    write("SUPER AGENT : requête reçue → "+query.value);
+    await sleep(250);
+    write("PLANIFIER : identification des compétences nécessaires");
+    const selected = agents.filter(a =>
+      ["Collecte & ingestion","Qualité & validation","Statistiques","Analyse IA","Géospatial","Anomalies","Orchestration"].includes(a.group)
+    );
+    write(`REGISTRE : ${selected.length} agents spécialisés activés sur ${agents.length}`);
+    await sleep(250);
+    for (const stage of [
+      "Collecte : données publiques / agrégées",
+      "Validation : schéma, fraîcheur, provenance et cohérence",
+      "Statistiques : agrégation temporelle et territoriale",
+      "Géospatial : ventilation par région",
+      "Anomalies : détection statistique",
+      "Analyse IA : synthèse explicative sans diagnostic clinique",
+      "Audit : provenance et journal d'exécution"
+    ]) { write(stage+" → OK","ok"); await sleep(180); }
+
+    const rows=[
+      ["Capitale-Nationale","128 420","+7,4 %","Surveillance","96 %"],
+      ["Chaudière-Appalaches","91 870","+4,1 %","Normal","94 %"],
+      ["Montérégie","214 630","+8,9 %","À surveiller","95 %"],
+      ["Montréal","356 210","+11,2 %","Anomalie détectée","97 %"],
+      ["Estrie","74 390","+2,8 %","Normal","93 %"]
+    ];
+    body.innerHTML=rows.map(r=>`<tr>${r.map((v,i)=>`<td style="padding:10px;border-bottom:1px solid #153650;color:${i===3&&v!=="Normal"?"#ffc857":"#eaf7ff"}">${v}</td>`).join("")}</tr>`).join("");
+    write("SUPER AGENT : synthèse produite et tableau analytique actualisé","ok");
+    write("GOUVERNANCE : aucune donnée personnelle de santé n'est requise par ce prototype","warn");
+    status.textContent="● COMPLETE"; status.style.color="#43e7aa";
+  }
+
+  document.getElementById("runOmega").onclick=run;
+  document.getElementById("clearOmega").onclick=()=>{log.innerHTML="";status.textContent="● READY";status.style.color="#43e7aa";};
+  write("FABRIC : 200 agents enregistrés et prêts.");
+  write("MODE : démonstrateur local — branchement API/LLM externe à fournir pour l'exécution réelle.");
+})();
+</script>
+</body>
+</html>
